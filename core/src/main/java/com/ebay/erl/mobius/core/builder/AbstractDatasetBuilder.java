@@ -30,10 +30,10 @@ import com.ebay.erl.mobius.core.model.ComputedColumns;
  * 
  * © 2007 – 2012 eBay Inc., Evan Chiu, Woody Zhou, Neel Sundaresan
  *
- * @param <ACUTAL_BUILDER_IMPL> the implementation of a {@link AbstractDatasetBuilder}.
+ * @param <ACTUAL_BUILDER_IMPL> the implementation of a {@link AbstractDatasetBuilder}.
  */
 @SuppressWarnings({"unchecked", "deprecation"})
-public abstract class AbstractDatasetBuilder<ACUTAL_BUILDER_IMPL>
+public abstract class AbstractDatasetBuilder<ACTUAL_BUILDER_IMPL>
 {
 	private static final Log LOGGER = LogFactory.getLog(AbstractDatasetBuilder.class);
 	
@@ -103,10 +103,10 @@ public abstract class AbstractDatasetBuilder<ACUTAL_BUILDER_IMPL>
 	/**
 	 * Specify the schema of this {@link Dataset}
 	 */
-	public ACUTAL_BUILDER_IMPL setSchema(String... schema )
+	public ACTUAL_BUILDER_IMPL setSchema(String... schema )
 	{
 		this.getDataset().setSchema(schema);
-		return (ACUTAL_BUILDER_IMPL)this;
+		return (ACTUAL_BUILDER_IMPL)this;
 	}
 	
 	
@@ -115,10 +115,10 @@ public abstract class AbstractDatasetBuilder<ACUTAL_BUILDER_IMPL>
 	 * 
 	 * @see com.ebay.erl.mobius.core.model.ComputedColumns
 	 */
-	public ACUTAL_BUILDER_IMPL addComuptedColumn(ComputedColumns aComputedColumn)
+	public ACTUAL_BUILDER_IMPL addComputedColumn(ComputedColumns aComputedColumn)
 	{
 		this.getDataset().addComputedColumn(aComputedColumn);		
-		return (ACUTAL_BUILDER_IMPL)this;
+		return (ACTUAL_BUILDER_IMPL)this;
 	}
 	
 	
@@ -153,7 +153,7 @@ public abstract class AbstractDatasetBuilder<ACUTAL_BUILDER_IMPL>
 	 * @return the builder itself.
 	 * @throws IOException
 	 */	
-	public ACUTAL_BUILDER_IMPL addInputPath(Path... paths)
+	public ACTUAL_BUILDER_IMPL addInputPath(Path... paths)
 		throws IOException
 	{
 		for(Path anInput:paths)
@@ -168,7 +168,7 @@ public abstract class AbstractDatasetBuilder<ACUTAL_BUILDER_IMPL>
 				this.addInputPath(true, anInput);
 			}
 		}
-		return (ACUTAL_BUILDER_IMPL)this;
+		return (ACTUAL_BUILDER_IMPL)this;
 	}
 	
 	/**
@@ -209,7 +209,7 @@ public abstract class AbstractDatasetBuilder<ACUTAL_BUILDER_IMPL>
 	 * function, and when the funciton return false, <code>IOException</code>
 	 * will be thrown here for that specific path.
 	 */
-	protected ACUTAL_BUILDER_IMPL addInputPath(boolean validatePathExistance, Path...paths)
+	protected ACTUAL_BUILDER_IMPL addInputPath(boolean validatePathExistance, Path...paths)
 		throws IOException
 	{
 		if( paths==null || paths.length==0 )
@@ -270,7 +270,7 @@ public abstract class AbstractDatasetBuilder<ACUTAL_BUILDER_IMPL>
 			}
 		}
 		
-		return (ACUTAL_BUILDER_IMPL)this;
+		return (ACTUAL_BUILDER_IMPL)this;
 	}
 	
 	/**
@@ -282,11 +282,11 @@ public abstract class AbstractDatasetBuilder<ACUTAL_BUILDER_IMPL>
 	 * @param criteria
 	 * @return the builder itself.
 	 */
-	public ACUTAL_BUILDER_IMPL constraint(TupleCriterion criteria)
+	public ACTUAL_BUILDER_IMPL constraint(TupleCriterion criteria)
 	{
 		Dataset dataset = this.getDataset();		
 		TupleCriterion.validate(dataset.getSchema(), criteria);
 		this.getDataset().addConstraint(criteria);
-		return (ACUTAL_BUILDER_IMPL)this;
+		return (ACTUAL_BUILDER_IMPL)this;
 	}
 }
